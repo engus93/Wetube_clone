@@ -14,7 +14,7 @@
 
 ###### ※ Express를 사용하는 이유 : 안정적으로 빠르고 쉽게 서버 구축이 가능
 
-## 03. What is NPM
+## 03. NPM
 
 > npm (Node Package Manager)은 자바스크립트 프로그래밍 언어를 위한 패키지 관리자이다. 자바스크립트 런타임 환경 Node.js의 기본 패키지 관리자이다.
 
@@ -103,3 +103,5 @@ app.use("/user", userRouter);
 ---
 
 > 1번 2번 전부 `/user`로 접속했을때에 `/user` + `/` 로 접속해주는 코드이다. 다른점은 export의 차이인데 named export는 변수 하나 하나 export 해주는 것이고 default는 파일 전부를 export 하는 것이다. 이처럼 파일들은 쪼개서 처리하고 파일을 정리하고 분할할 수 있는 것이 Routing이다.
+
+## 06. 
