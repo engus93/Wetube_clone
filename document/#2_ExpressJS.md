@@ -104,4 +104,18 @@ app.use("/user", userRouter);
 
 > 1번 2번 전부 `/user`로 접속했을때에 `/user` + `/` 로 접속해주는 코드이다. 다른점은 export의 차이인데 named export는 변수 하나 하나 export 해주는 것이고 default는 파일 전부를 export 하는 것이다. 이처럼 파일들은 쪼개서 처리하고 파일을 정리하고 분할할 수 있는 것이 Routing이다.
 
-## 06. 
+## 06. Arrow Function
+
+##### 1. implicit-arrow-linebreak (암시적 리턴)
+
+```JS
+lalala = () => true;
+```
+###### ※ 중괄호를 하면 암시적 성격을 잃음 → return을 해줘야 함
+
+```JS
+lalala = () => {
+   return true;
+}
+```
+
