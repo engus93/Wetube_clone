@@ -118,3 +118,81 @@ lalala = () => {
    return true;
 }
 ```
+## 7. Pug
+
+```HTML
+doctype html
+html
+    head
+        title #{pageTitle} | #{siteName} 
+    body
+        include ../partials/header
+        main
+            block content
+        include ../partials/footer
+```
+
+###### ※ pug 확장자 안에서 JS 코드를 쓰려면 #{ } 안에서 사용하면 된다.
+
+#### Template Engine Pug의 장점
+
+- HTML을 간단하게 표현해서 가독성이 좋다.
+- 마크업 문법보다 코드량이 적어 생산성이 좋아진다.
+- JS 연산 결과를 쉽게 보여줄 수 있다.
+- 정적인 부분과 동적인 부분을 따로 할 수 있다.
+- 타 Express Engine보다 Google Trend 수치가 높다.
+- Pug는 Jade였다.
+
+###### ※ Pug는 기존에 Jade라는 이름을 가지고 있었습니다. 하지만 이미 상표권이 있는 이름이였기 때문에 Pug라는 이름으로 바꾸게 됩니다.
+
+## 8. Locals
+
+```JS
+//middlewares.js
+export const localsMiddleware = (req, res, next) => {
+    res.locals.siteName = "WeTube";
+    res.locals.routes = routes;
+    next();
+};
+```
+
+###### 변수 또는 객체를 글로벌 선언해 사용할 수 있게 하는 `locals` 다른 곳에서는 routes를 선언함으로 그 안에 데이터를 사용 가능 ex) routesl.join
+
+## 9. Mixin
+
+> `mixin`은 `pug` 함수로서 **반복되는** HTML을(혹은 어떤 의미덩어리를) 함수 형태로 만들 수 있도록 기능을 제공하는 것이다. 
+
+```HTML
+<!-- 선언 -->
+mixin list
+
+ul
+li foo
+li bar
+li baz
+```
+
+```HTML
+<!-- 사용하기 -->
++list
+```
+
+```HTML
+<!-- 우리가 보는 실질적 내용 -->
+<ul></ul>
+<li>foo</li>
+<li>bar</li>
+<li>baz</li>
+```
+
+
+## 10. Status Code
+
+> HTTP 응답 상태 코드는 특정 HTTP 요청이 성공적으로 완료되었는지 알려줍니다. 응답은 5개의 그룹으로 나누어집니다.
+
+- 정보를 제공하는 응답
+- 성공적인 응답
+- 리다이렉트
+- 클라이언트 에러
+- 서버 에러
+

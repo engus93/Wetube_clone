@@ -75,4 +75,6 @@ typings/
 # FuseBox cache
 .fusebox/
 
+# 내가 추가한 파일들
 package-lock.json
+uploads

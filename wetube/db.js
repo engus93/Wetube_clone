@@ -1,50 +1,20 @@
-export const videos = [
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();    //dotenv.config()를 하면 process.env.~로 파일을 다 불러옴
+
+mongoose.connect(
+    // MongoDB URL을 dotenv를 통해 연결
+    process.env.MONGO_URL,
     {
-        id: 24393,
-        title: "Video awesome",
-        description: "This is something I Love1",
-        views: 24,
-        videoFile: "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        creator: {
-            id: 121212,
-            name: "Dudu",
-            email: "Dudu@naver.com"
-        }
-    },
-    {
-        id: 12121,
-        title: "Video super",
-        description: "This is something I Love2",
-        views: 24,
-        videoFile: "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        creator: {
-            id: 121212,
-            name: "Dudu",
-            email: "Dudu@naver.com"
-        }
-    },
-    {
-        id: 55555,
-        title: "Video nice",
-        description: "This is something I Love3",
-        views: 24,
-        videoFile: "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        creator: {
-            id: 121212,
-            name: "Dudu",
-            email: "Dudu@naver.com"
-        }
-    },
-    {
-        id: 11111,
-        title: "Video perfect",
-        description: "This is something I Love4",
-        views: 24,
-        videoFile: "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        creator: {
-            id: 121212,
-            name: "Dudu",
-            email: "Dudu@naver.com"
-        }
+        userNewUrlParser: true,
+        userFindAndModify: false
     }
-]
+);
+
+const db = mongoose.connection;
+
+const handleOpen = () => console.log("Connected to DB");
+const handleError = (error) => console.log(`Error on DB Connection: ${error}`);
+
+db.once("open", handleOpen);
+db.on("error", handleError);
