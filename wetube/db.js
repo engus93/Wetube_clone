@@ -6,8 +6,8 @@ mongoose.connect(
     // MongoDB URL을 dotenv를 통해 연결
     process.env.MONGO_URL,
     {
-        userNewUrlParser: true,
-        userFindAndModify: false
+        useNewUrlParser: true,
+        useFindAndModify: false
     }
 );
 
