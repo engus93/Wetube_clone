@@ -4,12 +4,13 @@ import routes from "../routes";
 import { home, search } from "../controllers/videoController";
 import {
   getJoin,
-  postJoin,
-  logout,
-  postLogin,
   getLogin,
+  logout,
+  postJoin,
+  postLogin,
   githubLogin,
-  postGithubLogin
+  postGithubLogIn,
+  getMe
 } from "../controllers/userController";
 import { onlyPublic, onlyPrivate } from "../middlewares";
 
@@ -25,12 +26,14 @@ globalRouter.get(routes.home, home);
 globalRouter.get(routes.search, search);
 globalRouter.get(routes.logout, onlyPrivate, logout);
 
-globalRouter.get(routes.github, githubLogin);
+globalRouter.get(routes.gitHub, githubLogin);
 
 globalRouter.get(
   routes.githubCallback,
   passport.authenticate("github", { failureRedirect: "/login" }),
-  postGithubLogin
+  postGithubLogIn
 );
+
+globalRouter.get(routes.me, getMe);
 
 export default globalRouter;
