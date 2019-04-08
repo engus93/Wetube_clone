@@ -1,4 +1,3 @@
-// User Controller
 import passport from "passport";
 import routes from "../routes";
 import User from "../models/User";
@@ -26,7 +25,6 @@ export const postJoin = async (req, res, next) => {
       console.log(error);
       res.redirect(routes.home);
     }
-    // To Do: Log user in
   }
 };
 
@@ -40,7 +38,6 @@ export const postLogin = passport.authenticate("local", {
 
 export const githubLogin = passport.authenticate("github");
 
-// 인자값 1, 2번째 (accessToken, refreshToken) 안써서 변수명 바꿈 -> 아예 지우면 오류남
 export const githubLoginCallback = async (_, __, profile, cb) => {
   const {
     _json: { id, avatar_url: avatarUrl, name, email }
@@ -78,7 +75,7 @@ export const facebookLoginCallback = async (_, __, profile, cb) => {
     const user = await User.findOne({ email });
     if (user) {
       user.facebookId = id;
-      user.avatarUrl = `http://graph.facebook.com/${id}/picture?type=large`;
+      user.avatarUrl = `https://graph.facebook.com/${id}/picture?type=large`;
       user.save();
       return cb(null, user);
     }
@@ -86,7 +83,7 @@ export const facebookLoginCallback = async (_, __, profile, cb) => {
       email,
       name,
       facebookId: id,
-      avatarUrl: `http://graph.facebook.com/${id}/picture?type=large`
+      avatarUrl: `https://graph.facebook.com/${id}/picture?type=large`
     });
     return cb(null, newUser);
   } catch (error) {
@@ -104,6 +101,7 @@ export const logout = (req, res) => {
 };
 
 export const getMe = (req, res) => {
+  console.log("fdsa");
   res.render("userDetail", { pageTitle: "User Detail", user: req.user });
 };
 
@@ -112,7 +110,8 @@ export const userDetail = async (req, res) => {
     params: { id }
   } = req;
   try {
-    const user = await User.findById(id);
+    const user = await User.findById(id).populate("videos");
+    console.log(user);
     res.render("userDetail", { pageTitle: "User Detail", user });
   } catch (error) {
     res.redirect(routes.home);
@@ -125,19 +124,16 @@ export const getEditProfile = (req, res) =>
 export const postEditProfile = async (req, res) => {
   const {
     body: { name, email },
-    file,
-    user: { id }
+    file
   } = req;
   try {
     await User.findByIdAndUpdate(req.user.id, {
       name,
       email,
-      // file ? file.path : req.user.avatarUrl은 file이 true면 file.path false면 req.user.avatarUrl
       avatarUrl: file ? file.path : req.user.avatarUrl
     });
     res.redirect(routes.me);
   } catch (error) {
-    console.log("false");
     res.redirect(routes.editProfile);
   }
 };
@@ -152,13 +148,13 @@ export const postChangePassword = async (req, res) => {
   try {
     if (newPassword !== newPassword1) {
       res.status(400);
-      res.redirect(routes.changePassword);
+      res.redirect(`/users/${routes.changePassword}`);
       return;
     }
-    req.user.changePassword(oldPassword, newPassword);
+    await req.user.changePassword(oldPassword, newPassword);
     res.redirect(routes.me);
   } catch (error) {
     res.status(400);
-    res.redirect(routes.changePassword);
+    res.redirect(`/users/${routes.changePassword}`);
   }
 };
