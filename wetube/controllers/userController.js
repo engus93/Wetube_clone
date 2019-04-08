@@ -126,7 +126,7 @@ export const postEditProfile = async (req, res) => {
   const {
     body: { name, email },
     file,
-    user: { _id: id }
+    user: { id }
   } = req;
   try {
     await User.findByIdAndUpdate(req.user.id, {

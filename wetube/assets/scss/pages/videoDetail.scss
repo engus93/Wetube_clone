@@ -8,10 +8,11 @@
     margin-top: 25px;
     button {
       width: 100px;
+      margin-bottom: 25px;
     }
     .video__title,
     .video__views,
-    .video__desctiption {
+    .video__description {
       display: block;
       margin-bottom: 15px;
     }
@@ -22,7 +23,7 @@
     .video__views {
       font-size: 14px;
     }
-    .video__desctiption {
+    .video__description {
       font-size: 16px;
     }
   }
