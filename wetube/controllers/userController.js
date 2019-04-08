@@ -119,7 +119,7 @@ export const userDetail = async (req, res) => {
   }
 };
 
-export const editProfile = (req, res) =>
+export const getEditProfile = (req, res) =>
   res.render("editProfile", { pageTitle: "Edit Profile" });
 
 export const changePassword = (req, res) =>
