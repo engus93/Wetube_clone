@@ -122,5 +122,26 @@ export const userDetail = async (req, res) => {
 export const getEditProfile = (req, res) =>
   res.render("editProfile", { pageTitle: "Edit Profile" });
 
+export const postEditProfile = async (req, res) => {
+  const {
+    body: { name, email },
+    file,
+    user: { _id: id }
+  } = req;
+  try {
+    await User.findByIdAndUpdate(req.user.id, {
+      name,
+      email,
+      avatarUrl: file ? file.path : req.user.avatarUrl
+    });
+    res.redirect(routes.me);
+  } catch (error) {
+    console.log("false");
+    res.render("editProfile", { pageTitle: "Edit Profile" });
+  }
+};
+
 export const changePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "Change Password" });
+
+// file ? file.path : req.user.avatarUrl은 file이 true면 file.path false면 req.user.avatarUrl
