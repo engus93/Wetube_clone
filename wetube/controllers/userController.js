@@ -132,16 +132,33 @@ export const postEditProfile = async (req, res) => {
     await User.findByIdAndUpdate(req.user.id, {
       name,
       email,
+      // file ? file.path : req.user.avatarUrl은 file이 true면 file.path false면 req.user.avatarUrl
       avatarUrl: file ? file.path : req.user.avatarUrl
     });
     res.redirect(routes.me);
   } catch (error) {
     console.log("false");
-    res.render("editProfile", { pageTitle: "Edit Profile" });
+    res.redirect(routes.editProfile);
   }
 };
 
-export const changePassword = (req, res) =>
+export const getChangePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "Change Password" });
 
-// file ? file.path : req.user.avatarUrl은 file이 true면 file.path false면 req.user.avatarUrl
+export const postChangePassword = async (req, res) => {
+  const {
+    body: { oldPassword, newPassword, newPassword1 }
+  } = req;
+  try {
+    if (newPassword !== newPassword1) {
+      res.status(400);
+      res.redirect(routes.changePassword);
+      return;
+    }
+    req.user.changePassword(oldPassword, newPassword);
+    res.redirect(routes.me);
+  } catch (error) {
+    res.status(400);
+    res.redirect(routes.changePassword);
+  }
+};
