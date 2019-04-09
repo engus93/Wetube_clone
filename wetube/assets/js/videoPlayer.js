@@ -74,8 +74,10 @@ const formatDate = seconds => {
 };
 
 function getCurrentTime() {
-  if (currentTime.innerHTML !== formatDate(videoPlayer.currentTime)) {
-    currentTime.innerHTML = formatDate(videoPlayer.currentTime);
+  if (
+    currentTime.innerHTML !== formatDate(Math.floor(videoPlayer.currentTime))
+  ) {
+    currentTime.innerHTML = formatDate(Math.floor(videoPlayer.currentTime));
   }
 }
 
@@ -85,11 +87,17 @@ function setTotalTime() {
   setInterval(getCurrentTime, 1000);
 }
 
+function handleEnded() {
+  videoPlayer.currentTime = 0;
+  playBtn.innerHTML = '<i class="fas fa-play"></i>';
+}
+
 function init() {
   playBtn.addEventListener("click", handlePlayClick);
   volumBtn.addEventListener("click", handleVolumClick);
   fullScrnBtn.addEventListener("click", goFullScreen);
   videoPlayer.oncanplay = () => setTotalTime();
+  videoPlayer.addEventListener("ended", handleEnded);
 }
 
 if (videoContainer) {
