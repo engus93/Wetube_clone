@@ -1,10 +1,11 @@
 const videoContainer = document.getElementById("jsVideoPlayer");
 const videoPlayer = document.querySelector("#jsVideoPlayer video");
 const playBtn = document.getElementById("jsPlayBtn");
-const volumBtn = document.getElementById("jsVolumBtn");
+const volumeBtn = document.getElementById("jsVolumeBtn");
 const fullScrnBtn = document.getElementById("jsFullScreen");
 const currentTime = document.getElementById("currentTime");
 const totalTime = document.getElementById("totalTime");
+const volumeRange = document.getElementById("jsVolume");
 
 function handlePlayClick() {
   if (videoPlayer.paused) {
@@ -18,11 +19,13 @@ function handlePlayClick() {
 
 function handleVolumClick() {
   if (videoPlayer.muted) {
+    volumeRange.value = videoPlayer.volume;
     videoPlayer.muted = false;
-    volumBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+    volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
   } else {
+    volumeRange.value = 0;
     videoPlayer.muted = true;
-    volumBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+    volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
   }
 }
 
@@ -92,12 +95,28 @@ function handleEnded() {
   playBtn.innerHTML = '<i class="fas fa-play"></i>';
 }
 
+function handleDrag(event) {
+  const {
+    target: { value }
+  } = event;
+  videoPlayer.volume = value;
+  if (value >= 0.6) {
+    volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+  } else if (value >= 0.3) {
+    volumeBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+  } else {
+    volumeBtn.innerHTML = '<i class="fas fa-volume-off"></i>';
+  }
+}
+
 function init() {
+  videoPlayer.volume = 0.5;
   playBtn.addEventListener("click", handlePlayClick);
-  volumBtn.addEventListener("click", handleVolumClick);
+  volumeBtn.addEventListener("click", handleVolumClick);
   fullScrnBtn.addEventListener("click", goFullScreen);
   videoPlayer.oncanplay = () => setTotalTime();
   videoPlayer.addEventListener("ended", handleEnded);
+  volumeRange.addEventListener("input", handleDrag);
 }
 
 if (videoContainer) {
