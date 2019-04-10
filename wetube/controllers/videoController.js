@@ -143,7 +143,7 @@ export const postRegisterView = async (req, res) => {
 
 export const postAddComment = async (req, res) => {
   const {
-    params: id,
+    params: { id },
     body: { comment },
     user
   } = req;
