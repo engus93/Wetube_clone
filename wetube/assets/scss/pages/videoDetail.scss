@@ -47,7 +47,10 @@
     }
     .video__comments-list {
       margin-top: 50px;
+      max-width: 400px;
       li {
+        width: 350px;
+        display: inline-block;
         background-color: #3498db;
         color: white;
         padding: 15px 30px;
@@ -56,6 +59,11 @@
         &:not(:last-child) {
           margin-bottom: 15px;
         }
+      }
+      button {
+        width: auto;
+        background-color: transparent;
+        outline: none;
       }
     }
   }
