@@ -4,6 +4,9 @@
   "description": "Cloning Youtube with Vanilla and NodeJS",
   "main": "index.js",
   "author": "Duveloper",
+  "engines": {
+    "node": "10.15.0"
+  },
   "dependencies": {
     "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.0",
@@ -50,7 +53,8 @@
     "build": "npm run build:server && npm run build:assets && npm run copyAll",
     "prebuild": "rm -rf build",
     "tunnel": "ngrok http 3000",
-    "start": "node build/init.js"
+    "start": "PRODUCTION=true node build/init.js",
+    "prestart": "npm run build"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
