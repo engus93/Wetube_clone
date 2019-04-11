@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 // dotenv.config()를 하면 process.env.~로 파일을 다 불러옴
 dotenv.config();
 
-mongoose.connect(process.env.MONGO_URL, {
+mongoose.connect(process.env.MONGO_URL_PROD, {
   // MongoDB URL을 dotenv를 통해 연결
   useNewUrlParser: true,
   useFindAndModify: false
