@@ -10,9 +10,16 @@
 
 ## 02. Express
 
-> Express는 Node.js에서 동작하는 Framwork이다.
+![Express](https://miro.medium.com/max/832/1*uPL1uCtLBRSk6akPL2hNzg.jpeg)
 
-###### ※ Express를 사용하는 이유 : 안정적으로 빠르고 쉽게 서버 구축이 가능
+> `Express`는 `Node.js`에서 동작하는 Framwork이다.
+
+###### ※ Django는 Python의 Framwork다.
+
+#### Express의 특징
+
+- `Express`를 찾는 이유는 안정적으로 빠르고 쉽게 서버 구축이 가능하기 때문이다.
+- Git 마지막 commit이 오래 되었다. → "그 만큼 구조가 안정기에 접어들었다." 라고 판단
 
 ## 03. NPM
 
@@ -26,8 +33,8 @@
 
 ##### 2. nodemon, babel 적용
 
-> `nodemon`과 `babel` 설치 후 `"scripts": {"start" : "nodemon --exec babel-node index.js --delay 2"}` 로 수정해준다.  
-마지막에 delay 2를 넣어주는 이유로는 babel이 변환을 완료할 때까지의 시간을 주기 위해서이다. delay가 없으면 nodemon이 실행됐을때, babel이 변환이 완료됐을 때 총 2번의 서버 재시작이 이뤄지게 된다.
+> `nodemon`과 `babel` 설치 후 `"scripts": {"start" : "nodemon --exec babel-node index.js --delay 2"}` 로 수정해준다.
+> 마지막에 delay 2를 넣어주는 이유로는 babel이 변환을 완료할 때까지의 시간을 주기 위해서이다. delay가 없으면 nodemon이 실행됐을때, babel이 변환이 완료됐을 때 총 2번의 서버 재시작이 이뤄지게 된다.
 
 ## 04. Middleware
 
@@ -37,8 +44,8 @@
 const app = express();
 
 const betweenHome = (req, res, next) => {
-   console.log('Between'); 
-   next();  
+   console.log('Between');
+   next();
 };
 app.get("/", betweenHome, handleHome);
 app.get("/profile", handleProfile);
@@ -48,8 +55,8 @@ app.get("/profile", handleProfile);
 
 ```JS
 const betweenHome = (req, res, next) => {
-   console.log('Between'); 
-   next();  
+   console.log('Between');
+   next();
 };
 app.use(betweenHome);
 app.get("/", handleHome);
@@ -64,17 +71,17 @@ app.get("/profile", handleProfile);
 
 ```JS
 // router.js
-import express from "express"; 
+import express from "express";
 
-export const userRouter = express.Router(); 
+export const userRouter = express.Router();
 
 userRouter.get("/", (req,res) => res.send('user index'));
 ```
 
 ```JS
-// app.js 
+// app.js
 import { userRouter } from "./router";
-... 
+...
 app.use("/user", userRouter);
 ```
 
@@ -84,9 +91,9 @@ app.use("/user", userRouter);
 
 ```JS
 // router.js
-import express from "express"; 
+import express from "express";
 
-const userRouter = express.Router(); 
+const userRouter = express.Router();
 
 userRouter.get("/", (req,res) => res.send('user index'));
 
@@ -94,9 +101,9 @@ export default userRouter;
 ```
 
 ```JS
-// app.js 
+// app.js
 import userRouter from "./router";
-... 
+...
 app.use("/user", userRouter);
 ```
 
@@ -111,6 +118,7 @@ app.use("/user", userRouter);
 ```JS
 lalala = () => true;
 ```
+
 ###### ※ 중괄호를 하면 암시적 성격을 잃음 → return을 해줘야 함
 
 ```JS
@@ -118,13 +126,14 @@ lalala = () => {
    return true;
 }
 ```
+
 ## 7. Pug
 
 ```HTML
 doctype html
 html
     head
-        title #{pageTitle} | #{siteName} 
+        title #{pageTitle} | #{siteName}
     body
         include ../partials/header
         main
@@ -160,7 +169,7 @@ export const localsMiddleware = (req, res, next) => {
 
 ## 9. Mixin
 
-> `mixin`은 `pug` 함수로서 **반복되는** HTML을(혹은 어떤 의미덩어리를) 함수 형태로 만들 수 있도록 기능을 제공하는 것이다. 
+> `mixin`은 `pug` 함수로서 **반복되는** HTML을(혹은 어떤 의미덩어리를) 함수 형태로 만들 수 있도록 기능을 제공하는 것이다.
 
 ```HTML
 <!-- 선언 -->
@@ -185,7 +194,6 @@ li baz
 <li>baz</li>
 ```
 
-
 ## 10. Status Code
 
 > HTTP 응답 상태 코드는 특정 HTTP 요청이 성공적으로 완료되었는지 알려줍니다. 응답은 5개의 그룹으로 나누어집니다.
@@ -195,4 +203,3 @@ li baz
 - 리다이렉트
 - 클라이언트 에러
 - 서버 에러
-
