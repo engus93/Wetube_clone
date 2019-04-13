@@ -65,7 +65,67 @@ app.get("/", handleHome);
 app.get("/profile", handleProfile);
 ```
 
-## 05. Routing
+## 5. Babel
+
+![Babel Logo](https://jaeyeophan.github.io/images/babel.png)
+
+#### Babel 설정법
+
+##### .babelrc
+
+```JSON
+{
+  "presets": ["@babel/preset-env"]
+}
+```
+
+> babelrc이라는 File을 생성해서 preset에 맞는 값을 넣어준다.
+
+##### package.json
+
+```JSON
+"scripts": {
+    "start": "babel-node index.js"
+}
+```
+
+> node 앞에 `babel-`을 추가하면 node가 바벨과 연동이 된다.
+
+## 6. Nodemon
+
+![Nodemon Logo](https://krauser085.github.io/assets/img/nodemon.png)
+
+> `nodemon`은 `node.js` 서버 개발시에 소스코드에 수정이 있을 경우, 자동으로 서버를 재시작 해주는 툴이다.
+
+#### 설정법
+
+##### package.json
+
+```JSON
+"scripts": {
+    "start": "nodemon --exec babel-node index.js --delay 2"
+}
+```
+
+> 제일 앞에 `nodemon --exec`를 붙여주고 서버가 `babel`과 시간차로 재시작 되는 것을 막기 위해 제일 끝에 `--delay 2`를 넣는다.
+
+## 07. Arrow Function
+
+##### implicit-arrow-linebreak (암시적 리턴)
+
+```JS
+lalala = () => true;
+```
+
+###### ※ 중괄호를 하면 암시적 성격을 잃음 → return을 해줘야 함
+
+```JS
+lalala = () => {
+   return true;
+}
+```
+
+## 08. Routing
 
 > Routing은 클라이언트에서 보내는 주소에 따라 다른 처리를 하는 것을 의미한다.
 
@@ -113,23 +173,7 @@ app.use("/user", userRouter);
 
 > 1번 2번 전부 `/user`로 접속했을때에 `/user` + `/` 로 접속해주는 코드이다. 다른점은 export의 차이인데 named export는 변수 하나 하나 export 해주는 것이고 default는 파일 전부를 export 하는 것이다. 이처럼 파일들은 쪼개서 처리하고 파일을 정리하고 분할할 수 있는 것이 Routing이다.
 
-## 06. Arrow Function
-
-##### implicit-arrow-linebreak (암시적 리턴)
-
-```JS
-lalala = () => true;
-```
-
-###### ※ 중괄호를 하면 암시적 성격을 잃음 → return을 해줘야 함
-
-```JS
-lalala = () => {
-   return true;
-}
-```
-
-## 7. Pug
+## 9. Pug
 
 ![Pug Logo](https://www.nodejsera.com/library/assets/img/pug-logo.png)
 
@@ -161,50 +205,6 @@ html
 - Pug는 Jade였다.
 
 ###### ※ Pug는 기존에 Jade라는 이름을 가지고 있었습니다. 하지만 이미 상표권이 있는 이름이였기 때문에 Pug라는 이름으로 바꾸게 됩니다.
-
-## 8. Babel
-
-![Babel Logo](https://jaeyeophan.github.io/images/babel.png)
-
-#### Babel 설정법
-
-##### .babelrc
-
-```JSON
-{
-  "presets": ["@babel/preset-env"]
-}
-```
-
-> babelrc이라는 File을 생성해서 preset에 맞는 값을 넣어준다.
-
-##### package.json
-
-```JSON
-"scripts": {
-    "start": "babel-node index.js"
-}
-```
-
-> node 앞에 `babel-`을 추가하면 node가 바벨과 연동이 된다.
-
-## 9. Nodemon
-
-![Nodemon Logo](https://krauser085.github.io/assets/img/nodemon.png)
-
-> `nodemon`은 `node.js` 서버 개발시에 소스코드에 수정이 있을 경우, 자동으로 서버를 재시작 해주는 툴이다.
-
-#### 설정법
-
-##### package.json
-
-```JSON
-"scripts": {
-    "start": "nodemon --exec babel-node index.js --delay 2"
-}
-```
-
-> 제일 앞에 `nodemon --exec`를 붙여주고 서버가 `babel`과 시간차로 재시작 되는 것을 막기 위해 제일 끝에 `--delay 2`를 넣는다.
 
 ## 10. Locals
 
