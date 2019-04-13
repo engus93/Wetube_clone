@@ -23,6 +23,8 @@
 
 ## 03. NPM
 
+![Npm Logo](https://heropy.blog/css/images/vendor_icons/npm.png)
+
 > npm (Node Package Manager)은 자바스크립트 프로그래밍 언어를 위한 패키지 관리자이다. 자바스크립트 런타임 환경 Node.js의 기본 패키지 관리자이다.
 
 ###### ※ Node.js를 설치하면 자동적으로 같이 설치됨
@@ -113,7 +115,7 @@ app.use("/user", userRouter);
 
 ## 06. Arrow Function
 
-##### 1. implicit-arrow-linebreak (암시적 리턴)
+##### implicit-arrow-linebreak (암시적 리턴)
 
 ```JS
 lalala = () => true;
@@ -129,6 +131,12 @@ lalala = () => {
 
 ## 7. Pug
 
+![Pug Logo](https://www.nodejsera.com/library/assets/img/pug-logo.png)
+
+> `Pug`는 html code를 최소화시키도록 도와주는 도구이다. 정적인 파일과 동적인 파일의 장단점을 결합시켰다.
+
+#### 1. Pug 문법
+
 ```HTML
 doctype html
 html
@@ -143,7 +151,7 @@ html
 
 ###### ※ pug 확장자 안에서 JS 코드를 쓰려면 #{ } 안에서 사용하면 된다.
 
-#### Template Engine Pug의 장점
+#### 2. Template Engine Pug의 장점
 
 - HTML을 간단하게 표현해서 가독성이 좋다.
 - 마크업 문법보다 코드량이 적어 생산성이 좋아진다.
@@ -154,7 +162,51 @@ html
 
 ###### ※ Pug는 기존에 Jade라는 이름을 가지고 있었습니다. 하지만 이미 상표권이 있는 이름이였기 때문에 Pug라는 이름으로 바꾸게 됩니다.
 
-## 8. Locals
+## 8. Babel
+
+![Babel Logo](https://jaeyeophan.github.io/images/babel.png)
+
+#### Babel 설정법
+
+##### .babelrc
+
+```JSON
+{
+  "presets": ["@babel/preset-env"]
+}
+```
+
+> babelrc이라는 File을 생성해서 preset에 맞는 값을 넣어준다.
+
+##### package.json
+
+```JSON
+"scripts": {
+    "start": "babel-node index.js"
+}
+```
+
+> node 앞에 `babel-`을 추가하면 node가 바벨과 연동이 된다.
+
+## 9. Nodemon
+
+![Nodemon Logo](https://krauser085.github.io/assets/img/nodemon.png)
+
+> `nodemon`은 `node.js` 서버 개발시에 소스코드에 수정이 있을 경우, 자동으로 서버를 재시작 해주는 툴이다.
+
+#### 설정법
+
+##### package.json
+
+```JSON
+"scripts": {
+    "start": "nodemon --exec babel-node index.js --delay 2"
+}
+```
+
+> 제일 앞에 `nodemon --exec`를 붙여주고 서버가 `babel`과 시간차로 재시작 되는 것을 막기 위해 제일 끝에 `--delay 2`를 넣는다.
+
+## 10. Locals
 
 ```JS
 //middlewares.js
@@ -167,7 +219,7 @@ export const localsMiddleware = (req, res, next) => {
 
 ###### 변수 또는 객체를 글로벌 선언해 사용할 수 있게 하는 `locals` 다른 곳에서는 routes를 선언함으로 그 안에 데이터를 사용 가능 ex) routesl.join
 
-## 9. Mixin
+## 11. Mixin
 
 > `mixin`은 `pug` 함수로서 **반복되는** HTML을(혹은 어떤 의미덩어리를) 함수 형태로 만들 수 있도록 기능을 제공하는 것이다.
 
@@ -194,7 +246,7 @@ li baz
 <li>baz</li>
 ```
 
-## 10. Status Code
+## 12. Status Code
 
 > HTTP 응답 상태 코드는 특정 HTTP 요청이 성공적으로 완료되었는지 알려줍니다. 응답은 5개의 그룹으로 나누어집니다.
 
