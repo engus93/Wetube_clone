@@ -181,15 +181,20 @@ app.use("/user", userRouter);
 
 #### 1. Pug 문법
 
-```HTML
+```PUG
 doctype html
 html
     head
         title #{pageTitle} | #{siteName}
     body
+        //- Header
         include ../partials/header
+
+        //- Main Contents
         main
             block content
+
+        //- Footer
         include ../partials/footer
 ```
 
