@@ -1,7 +1,11 @@
 // Video Controller
 
+import { videos } from "../db";
+
 // Home
-export const home = (req, res) => res.render("home", { pageTitle: "Home" });
+export const home = (req, res) => {
+  res.render("home", { pageTitle: "Home", videos });
+};
 
 // Search
 export const search = (req, res) => {
