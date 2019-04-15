@@ -31,7 +31,7 @@ const routes = {
     if (id) {
       return `/users/${id}`;
     } else {
-      return `/users/${USER_DETAIL}`;
+      return USER_DETAIL;
     }
   },
   editProfile: EDIT_PROFILE,
@@ -42,7 +42,7 @@ const routes = {
     if (id) {
       return `/videos/${id}`;
     } else {
-      return `/videos/${VIDEO_DETAIL}`;
+      return VIDEO_DETAIL;
     }
   },
   editVideo: EDIT_VIDEO,
