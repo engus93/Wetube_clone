@@ -33,7 +33,7 @@ export const postUpload = async (req, res) => {
   } = req;
   try {
     const newVideo = await Video.create({
-      fileURL: path,
+      fileUrl: path,
       title,
       description
     });

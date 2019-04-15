@@ -15,6 +15,7 @@ const app = express();
 // 보안 미들웨인 helmet을 제일 위에 둠
 app.use(helmet());
 app.set("view engine", "pug");
+app.use("/uploads", express.static("uploads"));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
