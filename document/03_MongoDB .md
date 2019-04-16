@@ -77,3 +77,7 @@ export default model;
 > Schema 안에 여러 Attribute를 줄 수 있다. 또한 위에 내용에서 `creator`의 집중을 하면 `ref`를 확인할 수 있다. `ref`는 다른 Model의 내용을 참조한다는 뜻이다.
 
 출처: https://docs.mongodb.com/manual/core/data-modeling-introduction/
+
+## 5. ESlint
+
+> 설치법
