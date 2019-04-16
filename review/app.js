@@ -2,7 +2,6 @@
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import mongoStore from "connect-mongo";
-import dotenv from "dotenv";
 import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
@@ -16,8 +15,6 @@ import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 
 import "./passport";
-
-dotenv.config();
 
 const app = express();
 
