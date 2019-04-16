@@ -11,7 +11,7 @@ const OUTPUT_DIR = path.join(__dirname, "static");
 
 const config = {
   // Load File
-  entry: ENTRY_FILE,
+  entry: ["@babel/polyfill", ENTRY_FILE],
 
   // Build Mode
   mode: MODE,
@@ -20,7 +20,15 @@ const config = {
   module: {
     rules: [
       {
-        //   정규식 파일 구분하기
+        test: /\.(js)$/,
+        use: [
+          {
+            loader: "babel-loader"
+          }
+        ]
+      },
+      {
+        // 정규식 파일 구분하기
         test: /\.(scss)$/,
 
         // 위에 파일들을 아래에 적용 해독 순서 아래서 위로
@@ -33,13 +41,13 @@ const config = {
             //   CSS => Compatibility CSS
             loader: "postcss-loader",
             options: {
-              plugin() {
+              plugins() {
                 return [autoprefixer({ browserlist: "cover 99.5%" })];
               }
             }
           },
           {
-            //   SCSS => CSS
+            // SCSS => CSS
             loader: "sass-loader"
           }
         ])
@@ -47,9 +55,9 @@ const config = {
     ]
   },
 
-  //   Out Put File Options
+  // Out Put File Options
   output: {
-    //   File Out Path
+    // File Out Path
     path: OUTPUT_DIR,
     // Save File Name
     filename: "[name].js"
