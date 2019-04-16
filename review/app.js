@@ -3,12 +3,15 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import express from "express";
 import helmet from "helmet";
-import { localMiddleware } from "./middlewares";
 import morgan from "morgan";
+import passport from "passport";
 import routes from "./routes";
+import { localsMiddleware } from "./middlewares";
 import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
+
+import "./passport";
 
 const app = express();
 
@@ -21,8 +24,10 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.use(localMiddleware);
+app.use(localsMiddleware);
 
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
