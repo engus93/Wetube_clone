@@ -4,6 +4,7 @@ import routes from "./routes";
 
 // 파일 저장할 경로 지정
 const multerVideo = multer({ dest: "uploads/videos/" });
+const multerAvatar = multer({ dest: "uploads/avatars/" });
 
 export const localsMiddleware = (req, res, next) => {
   res.locals.siteName = "WeTube";
@@ -32,3 +33,4 @@ export const onlyPrivate = (req, res, next) => {
 
 // videoFile이라는 name의 Data 하나만 업로드 함
 export const uploadVideo = multerVideo.single("videoFile");
+export const uploadAvatar = multerAvatar.single("avatar");
