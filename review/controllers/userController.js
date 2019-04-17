@@ -75,8 +75,18 @@ export const logout = (req, res) => {
 };
 
 // User Detail
-export const userDetail = (req, res) =>
-  res.render("userDetail", { pageTitle: "User Detail" });
+export const userDetail = async (req, res) => {
+  const {
+    params: { id }
+  } = req;
+  try {
+    const user = await User.findById(id);
+    res.render("userDetail", { pageTitle: "User Detail", user });
+  } catch (error) {
+    console.log(error);
+    res.redirect(routes.home);
+  }
+};
 
 export const getMe = (req, res) => {
   res.render("userDetail", { pageTitle: "User Detail", user: req.user });
