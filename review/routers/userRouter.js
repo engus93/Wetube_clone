@@ -2,15 +2,15 @@ import express from "express";
 import routes from "../routes";
 import {
   userDetail,
-  editProfile,
-  changePassword
+  changePassword,
+  getEditProfile
 } from "../controllers/userController";
 import { onlyPrivate } from "../middlewares";
 
 const userRouter = express.Router();
 
 // Edit Profile
-userRouter.get(routes.editProfile, onlyPrivate, editProfile);
+userRouter.get(routes.editProfile, onlyPrivate, getEditProfile);
 
 // Change Password
 userRouter.get(routes.changePassword, onlyPrivate, changePassword);

@@ -93,7 +93,7 @@ export const getMe = (req, res) => {
 };
 
 // Edit Profile
-export const editProfile = (req, res) =>
+export const getEditProfile = (req, res) =>
   res.render("editProfile", { pageTitle: "Edit Profile" });
 
 // Change Password
