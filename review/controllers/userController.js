@@ -2,6 +2,7 @@ import passport from "passport";
 import routes from "../routes";
 import User from "../models/User";
 
+// Join
 export const getJoin = (req, res) => {
   res.render("join", { pageTitle: "Join" });
 };
@@ -28,6 +29,7 @@ export const postJoin = async (req, res, next) => {
   }
 };
 
+// Log In
 export const getLogin = (req, res) =>
   res.render("login", { pageTitle: "Log In" });
 
@@ -36,6 +38,7 @@ export const postLogin = passport.authenticate("local", {
   successRedirect: routes.home
 });
 
+// Github Log In
 export const githubLogin = passport.authenticate("github");
 
 export const githubLoginCallback = async (_, __, profile, cb) => {
@@ -65,14 +68,24 @@ export const postGithubLogIn = (req, res) => {
   res.redirect(routes.home);
 };
 
+// Log Out
 export const logout = (req, res) => {
   req.logout();
   res.redirect(routes.home);
 };
 
+// User Detail
 export const userDetail = (req, res) =>
   res.render("userDetail", { pageTitle: "User Detail" });
+
+export const getMe = (req, res) => {
+  res.render("userDetail", { pageTitle: "User Detail", user: req.user });
+};
+
+// Edit Profile
 export const editProfile = (req, res) =>
   res.render("editProfile", { pageTitle: "Edit Profile" });
+
+// Change Password
 export const changePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "Change Password" });
