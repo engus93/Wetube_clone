@@ -367,6 +367,8 @@ input[type="submit"] {
     .video-detail__container .video__info .video__description {
       display: block;
       margin-bottom: 15px; }
+    .video-detail__container .video__info .video__author a {
+      color: #3498db; }
     .video-detail__container .video__info .video__title {
       font-size: 22px;
       font-weight: 300; }
@@ -388,7 +390,8 @@ input[type="submit"] {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 18px; }
+    margin-bottom: 18px;
+    margin-bottom: 50px; }
     .user-profile .user-profile__header .profile__username {
       font-size: 18px;
       margin-top: 15px; }
