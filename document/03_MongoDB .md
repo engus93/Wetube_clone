@@ -80,4 +80,6 @@ export default model;
 
 ## 5. ESlint
 
-> 설치법
+![ESlint Log](https://cdn-images-1.medium.com/max/1600/1*TPkhIqPgVzFSSpwdlVwhVw.png)
+
+> 코드 Linting 이란 특정 스타일 규칙을 준수하지 않는 문제가 있는 소스코드를 찾는데 사용되는 방식을 말하며, Linter 는 이러한 Linting 을 수행하는 도구이다. 일반적인 JavaScript 개발시 구문 오류나 기타 오류를 찾기 위해서는 실제 실행까지 시켜봐야한다. 하지만 **`ESLint` 같은 Linting 도구를 사용하면 JavaScript를 실행하지 않고도 기본적인 문제를 발견할 수 있다.**
