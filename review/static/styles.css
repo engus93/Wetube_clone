@@ -455,6 +455,8 @@ input[type="submit"] {
     .video-detail__container .video__comments .video__comments-list {
       margin-top: 50px; }
       .video-detail__container .video__comments .video__comments-list li {
+        display: inline-block;
+        width: 200px;
         background-color: #3498db;
         color: white;
         padding: 15px;
@@ -462,6 +464,11 @@ input[type="submit"] {
         border-bottom-left-radius: 0px; }
         .video-detail__container .video__comments .video__comments-list li:not(:last-child) {
           margin-bottom: 15px; }
+      .video-detail__container .video__comments .video__comments-list button {
+        width: auto;
+        background-color: transparent;
+        outline: none;
+        box-shadow: none; }
 
 .user-profile {
   width: 100%;
