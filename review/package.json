@@ -44,22 +44,22 @@
   },
   "scripts": {
     "dev:server": "nodemon --exec babel-node src/init.js --delay 2 --ignore '.scss' --ignore 'static' ",
-    "dev:assets": "cd src && cross-env WEBPACK_ENV=development webpack -w",
-    "build:assets": "cd src && cross-env WEBPACK_ENV=production webpack",
+    "dev:assets": "cd src && webpack -w --mode=development",
+    "build:assets": "cd src && webpack -w --mode=production",
     "build:server": "babel src --out-dir build",
     "copyAll": "cp -R src/static build && cp -R src/views build",
     "build": "npm run build:server && npm run build:assets && npm run copyAll",
     "prebuild": "rm -rf build",
-    "start": "PRODUCTION=true node build/init.js",
+    "start": "node build/init.js",
     "prestart": "npm run build"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^4.1.0",
-    "eslint-plugin-import": "^2.17.1",
+    "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-prettier": "^3.0.1",
-    "nodemon": "^1.18.11",
-    "prettier": "^1.17.0"
+    "prettier": "^1.16.4",
+    "nodemon": "^1.18.10"
   }
 }
