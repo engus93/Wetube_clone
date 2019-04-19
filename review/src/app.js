@@ -1,4 +1,5 @@
 // import는 abc 순서로 하자
+import flash from "express-flash";
 import "@babel/polyfill";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
@@ -40,6 +41,8 @@ app.use(
     store: new CookieStore({ mongooseConnection: mongoose.connection })
   })
 );
+app.use(flash());
+
 app.use(passport.initialize());
 app.use(passport.session());
 

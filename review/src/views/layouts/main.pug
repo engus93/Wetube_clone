@@ -5,6 +5,12 @@ html
         link(rel="stylesheet", href="/static/styles.css")
         title #{pageTitle} | #{siteName}
     body
+        if messages.error
+            span=messages.error
+        else if messages.info
+            span=messages.info
+        else if messages.success
+            span=messages.success
         include ../partials/header
 
         main
