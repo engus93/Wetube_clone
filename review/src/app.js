@@ -1,4 +1,5 @@
 // import는 abc 순서로 하자
+import "@babel/polyfill";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import mongoStore from "connect-mongo";
@@ -7,6 +8,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import passport from "passport";
 import session from "express-session";
+import path from "path";
 import mongoose from "mongoose";
 import routes from "./routes";
 import { localsMiddleware } from "./middlewares";
@@ -24,8 +26,8 @@ const CookieStore = mongoStore(session);
 // 보안 미들웨인 helmet을 제일 위에 둠
 app.use(helmet());
 app.set("view engine", "pug");
-app.use("/uploads", express.static("uploads"));
-app.use("/static", express.static("static"));
+app.set("views", path.join(__dirname, "views"));
+app.use("/static", express.static(path.join(__dirname, "static")));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
