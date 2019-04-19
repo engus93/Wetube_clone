@@ -20,9 +20,11 @@ const config = {
   module: {
     rules: [
       {
+        // 정규식 .js file 찾기
         test: /\.(js)$/,
         use: [
           {
+            // This allows webpack to understand babel
             loader: "babel-loader"
           }
         ]
@@ -34,11 +36,11 @@ const config = {
         // 위에 파일들을 아래에 적용 해독 순서 아래서 위로
         use: ExtractCSS.extract([
           {
-            // This allows webpack to understand CSS
+            // 3. This allows webpack to understand CSS
             loader: "css-loader"
           },
           {
-            //   CSS => Compatibility CSS
+            // 2. CSS => Compatibility CSS
             loader: "postcss-loader",
             options: {
               plugins() {
@@ -47,7 +49,7 @@ const config = {
             }
           },
           {
-            // SCSS => CSS
+            // 1. SCSS => CSS
             loader: "sass-loader"
           }
         ])
@@ -62,6 +64,7 @@ const config = {
     // Save File Name
     filename: "[name].js"
   },
+  // CSS file로 만들어 줌
   plugins: [new ExtractCSS("styles.css")]
 };
 
