@@ -44,7 +44,7 @@ const config = {
             loader: "postcss-loader",
             options: {
               plugins() {
-                return [autoprefixer({ browserlist: "cover 99.5%" })];
+                return [autoprefixer({ browser: "cover 99.5%" })];
               }
             }
           },
